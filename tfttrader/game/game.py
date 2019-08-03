@@ -1,19 +1,22 @@
 import numpy as np
 
 from tfttrader.game import pool, player
-
-
-def init_players():
-    player_array = np.empty(8, dtype=player.Player)
-    for i in range(0, 8):
-        player_array[i] = player.Player("player_{}".format(i))
-    return player_array
+from tfttrader.strategies import leftmost, rightmost
 
 
 class Game:
     def __init__(self):
         self.pool = pool.Pool()
-        self.players = init_players()
+        self.players = self.init_players()
+
+    def init_players(self):
+        player_array = np.empty(8, dtype=player.Player)
+        for i in range(0, 8):
+            if i % 2 == 0:
+                player_array[i] = player.Player(self, "player_{}".format(i), leftmost.Leftmost())
+            else:
+                player_array[i] = player.Player(self, "player_{}".format(i), rightmost.Rightmost())
+        return player_array
 
     def start(self):
         print(self.pool.quantities)
