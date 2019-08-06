@@ -26,21 +26,16 @@ class Game:
     def run(self):
         i = 1
         while i <= 30:
-            print("Iteration number:    {}".format(i))
+            print("Trading session number:    {}".format(i))
             for p in self.players:
-                print("Shop for player:     {}".format(p.name))
-                for j in range(0, 5):
-                    # TODO: put a fine-super-crazy-fine algorithm to randomize champions from the pool
-                    # champpos = random.randrange(0, self.pool.total)
-                    # cp = champpos
-                    # ci = 0
-                    # champ_name = ""
-                    # while cp > 0:
-                    #     if self.pool.quantities[ci] < cp:
-                    #         cp -= self.pool.quantities[ci]
-                    #     else:
-                    #         champ_name = self.pool.quantities[ci]
-                    print("         position {}: {}".format(j, self.pool.quantities[0][0]), end="")
+                p.update_gold()
+                p.update_exp()
+                print("Shop for player:     {}, level {}".format(p.name, p.get_level()))
+                print("{}".format(self.generate_personal_shop(p)), end="")
                 print("\n")
             print("\n\n")
             i += 1
+
+    def generate_personal_shop(self, p):
+        shop = self.pool.get_shop_for_level(p.get_level())
+        return shop

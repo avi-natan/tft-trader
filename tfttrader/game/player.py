@@ -9,9 +9,11 @@ exp_gain = 4
 starting_level = 1
 starting_gold = 1
 
+PASSIVE_GOLD_GAIN = 5
+
 
 class Player:
-    def __init__(self, game, name, strat):
+    def __init__(self, game, name, strategy):
         self.game = game
         self.name = name
         self.hp = starting_hp
@@ -21,7 +23,7 @@ class Player:
         self.max_field_champs = self.level
         self.board = board.Board()
         self.personal_shop = np.array([None, None, None, None, None])
-        self.trading_strategy = strat
+        self.trading_strategy = strategy
 
     def to_string(self):
         string_rep = """Name:   {}
@@ -35,3 +37,28 @@ Max field champs:   {}\n""".format(self.name, self.hp, self.exp, self.level, sel
         string_rep += "Trading strategy:    {}\n\n".format(self.trading_strategy.to_string())
 
         return string_rep
+
+    def get_level(self):
+        return self.level
+
+    def update_gold(self):
+        self.gold += PASSIVE_GOLD_GAIN
+
+    def update_exp(self, amount=2):
+        self.exp += amount
+        if self.exp >= 184:
+            self.level = 9
+        elif self.exp >= 114:
+            self.level = 8
+        elif self.exp >= 68:
+            self.level = 7
+        elif self.exp >= 38:
+            self.level = 6
+        elif self.exp >= 20:
+            self.level = 5
+        elif self.exp >= 10:
+            self.level = 4
+        elif self.exp >= 4:
+            self.level = 3
+        elif self.exp >= 2:
+            self.level = 2
