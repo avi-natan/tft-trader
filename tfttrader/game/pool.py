@@ -97,6 +97,63 @@ class Pool:
             8: [0, 150, 400, 750, 950, 1000],
             9: [0, 100, 250, 600, 900, 1000],
         }
+        self.name_to_place = {
+            "Darius": [0, 0],
+            "Elise": [0, 1],
+            "Fiora": [0, 2],
+            "Garen": [0, 3],
+            "Graves": [0, 4],
+            "Kassadin": [0, 5],
+            "Kha'Zix": [0, 6],
+            "Mordekaiser": [0, 7],
+            "Nidalee": [0, 8],
+            "Tristana": [0, 9],
+            "Vayne": [0, 10],
+            "Warwick": [0, 11],
+
+            "Ahri": [1, 0],
+            "Blitzcrank": [1, 1],
+            "Braum": [1, 2],
+            "Lissandra": [1, 3],
+            "Lucian": [1, 4],
+            "Lulu": [1, 5],
+            "Pyke": [1, 6],
+            "Rek'Sai": [1, 7],
+            "Shen": [1, 8],
+            "Twisted Fate": [1, 9],
+            "Varus": [1, 10],
+            "Zed": [1, 11],
+
+            "Aatrox": [2, 0],
+            "Ashe": [2, 1],
+            "Evelynn": [2, 2],
+            "Gangplank": [2, 3],
+            "Katarina": [2, 4],
+            "Kennen": [2, 5],
+            "Morgana": [2, 6],
+            "Poppy": [2, 7],
+            "Rengar": [2, 8],
+            "Shyvana": [2, 9],
+            "Veigar": [2, 10],
+            "Volibear": [2, 11],
+
+            "Akali": [3, 0],
+            "Aurelion Sol": [3, 1],
+            "Brand": [3, 2],
+            "Cho'Gath": [3, 3],
+            "Draven": [3, 4],
+            "Gnar": [3, 5],
+            "Kindred": [3, 6],
+            "Leona": [3, 7],
+            "Sejuani": [3, 8],
+
+            "Anivia": [4, 0],
+            "Karthus": [4, 1],
+            "Kayle": [4, 2],
+            "Miss Fortune": [4, 3],
+            "Swain": [4, 4],
+            "Yasuo": [4, 5],
+        }
 
     def get_shop_for_level(self, level):
         shop = ["", "", "", "", ""]
@@ -121,3 +178,11 @@ class Pool:
                     selected_champ -= champ_record[2]
 
         return shop
+
+    def recall_old_personal_shop(self, personal_shop):
+        for i in personal_shop:
+            if i is not None:
+                index = self.name_to_place[i]
+                self.quantities[index[0]][1][index[1]][2] += 1
+                self.quantities[index[0]][0] += 1
+                self.total_quantity_overall += 1

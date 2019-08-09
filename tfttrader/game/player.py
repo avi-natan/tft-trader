@@ -41,6 +41,9 @@ Max field champs:   {}\n""".format(self.name, self.hp, self.exp, self.level, sel
     def get_level(self):
         return self.level
 
+    def get_personal_shop(self):
+        return self.personal_shop
+
     def update_gold(self):
         self.gold += PASSIVE_GOLD_GAIN
 
@@ -62,3 +65,6 @@ Max field champs:   {}\n""".format(self.name, self.hp, self.exp, self.level, sel
             self.level = 3
         elif self.exp >= 2:
             self.level = 2
+
+    def update_personal_shop(self, shop):
+        self.personal_shop = shop

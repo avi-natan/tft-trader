@@ -26,15 +26,31 @@ class Game:
     def run(self):
         i = 1
         while i <= 30:
-            print("Trading session number:    {}".format(i))
-            for p in self.players:
-                p.update_gold()
-                p.update_exp()
-                print("Shop for player:     {}, level {}".format(p.name, p.get_level()))
-                print("{}".format(self.generate_personal_shop(p)), end="")
-                print("\n")
-            print("\n\n")
+            self.planning_session(i)
+            self.battle_session(i)
             i += 1
+
+    def planning_session(self, session_number):
+        print("Planning session number:    {}".format(session_number))
+        for p in self.players:
+            self.pool.recall_old_personal_shop(p.get_personal_shop())
+
+        for p in self.players:
+            p.update_gold()
+            p.update_exp()
+            p.update_personal_shop(self.pool.get_shop_for_level(p.get_level()))
+            print("Shop for player:     {}, level {}".format(p.name, p.get_level()))
+            print("{}".format(p.get_personal_shop()), end="")
+            print("\n")
+        print("\n\n")
+
+    def battle_session(self, session_number):
+        print("Battle session number:    {}".format(session_number))
+        battle_pairs = np.array(list(map(lambda p: p.name, self.players)))
+        np.random.shuffle(battle_pairs)
+        battle_pairs = battle_pairs.reshape((4, 2))
+        print("Battle pairs:\n{}".format(battle_pairs))
+        print("\n\n")
 
     def generate_personal_shop(self, p):
         shop = self.pool.get_shop_for_level(p.get_level())
