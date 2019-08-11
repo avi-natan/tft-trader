@@ -28,6 +28,7 @@ class Player:
         self.event = threading.Event()
         self.worker = threading.Thread(name=self.name + " Thread", target=self.trading_strategy.plan, args=(self,))
         self.should_end = False
+        self.should_stop_planning = False
 
     def to_string(self):
         string_rep = """Name:   {}
@@ -72,3 +73,6 @@ Max field champs:   {}\n""".format(self.name, self.hp, self.exp, self.level, sel
 
     def set_personal_shop(self, shop):
         self.personal_shop = shop
+
+    def stop_planning(self):
+        self.should_stop_planning = True

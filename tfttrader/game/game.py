@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 from tfttrader.game import pool, player
 from tfttrader.strategies import leftmost, rightmost
@@ -39,18 +40,29 @@ class Game:
 
     def planning_session(self, session_number):
         print("================== Planning session number: {} start ===================".format(session_number))
+        # Recalling the units that were not bought to the pool
         for p in self.players:
             self.pool.recall_old_personal_shop(p.get_personal_shop())
 
+        # Updating player state and debug printing the player shop
         for p in self.players:
             p.update_gold()
             p.update_exp()
             p.set_personal_shop(self.pool.get_shop_for_level(p.get_level()))
             print("Shop for player:     {}, level {}\n{}\n".format(p.name, p.get_level(), p.get_personal_shop()))
 
+        # Signaling the players to start their planning
         for p in self.players:
             p.event.set()
 
+        # Waiting while planning happens
+        time.sleep(5)
+
+        # Preemptively stopping all remaining players that are still planning
+        for p in self.players:
+            p.stop_planning()
+
+        # Waits for all the players to finish their last planning iteration
         all_ready = False
         while not all_ready:
             rdy = True
