@@ -14,12 +14,14 @@ class Game:
         for i in range(0, 8):
             if i % 2 == 0:
                 player_array[i] = player.Player(self, "player_{}".format(i), leftmost.Leftmost())
+                player_array[i].worker.start()
             else:
                 player_array[i] = player.Player(self, "player_{}".format(i), rightmost.Rightmost())
+                player_array[i].worker.start()
         return player_array
 
     def start(self):
-        print(self.pool.quantities)
+        print("\n{}".format(self.pool.quantities))
         for p in self.players:
             print(p.to_string())
 
@@ -29,6 +31,10 @@ class Game:
             self.planning_session(i)
             self.battle_session(i)
             i += 1
+        print("end of while loop")
+        for p in self.players:
+            p.should_end = True
+            p.event.set()
 
     def planning_session(self, session_number):
         print("Planning session number:    {}".format(session_number))
@@ -38,10 +44,18 @@ class Game:
         for p in self.players:
             p.update_gold()
             p.update_exp()
-            p.update_personal_shop(self.pool.get_shop_for_level(p.get_level()))
-            print("Shop for player:     {}, level {}".format(p.name, p.get_level()))
-            print("{}".format(p.get_personal_shop()), end="")
-            print("\n")
+            p.set_personal_shop(self.pool.get_shop_for_level(p.get_level()))
+            print("Shop for player:     {}, level {}\n{}\n".format(p.name, p.get_level(), p.get_personal_shop()))
+            p.event.set()
+
+        print("collecting ready players")
+        all_ready = False
+        while not all_ready:
+            rdy = True
+            for p in self.players:
+                rdy &= not p.event.isSet()
+            all_ready = rdy
+
         print("\n\n")
 
     def battle_session(self, session_number):

@@ -1,4 +1,5 @@
 import numpy as np
+import threading
 
 from tfttrader.game import board
 
@@ -24,6 +25,9 @@ class Player:
         self.board = board.Board()
         self.personal_shop = np.array([None, None, None, None, None])
         self.trading_strategy = strategy
+        self.event = threading.Event()
+        self.worker = threading.Thread(name=self.name + " Thread", target=self.trading_strategy.plan, args=(self,))
+        self.should_end = False
 
     def to_string(self):
         string_rep = """Name:   {}
@@ -66,5 +70,5 @@ Max field champs:   {}\n""".format(self.name, self.hp, self.exp, self.level, sel
         elif self.exp >= 2:
             self.level = 2
 
-    def update_personal_shop(self, shop):
+    def set_personal_shop(self, shop):
         self.personal_shop = shop

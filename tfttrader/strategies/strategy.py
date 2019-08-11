@@ -5,7 +5,7 @@ class Strategy(abc.ABC):
     name: str
 
     @abc.abstractmethod
-    def pick(self, player):
+    def plan(self, player):
         pass
 
     def to_string(self):
