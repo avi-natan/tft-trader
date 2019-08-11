@@ -31,13 +31,14 @@ class Game:
             self.planning_session(i)
             self.battle_session(i)
             i += 1
+
         print("end of while loop")
         for p in self.players:
             p.should_end = True
             p.event.set()
 
     def planning_session(self, session_number):
-        print("Planning session number:    {}".format(session_number))
+        print("================== Planning session number: {} start ===================".format(session_number))
         for p in self.players:
             self.pool.recall_old_personal_shop(p.get_personal_shop())
 
@@ -46,9 +47,10 @@ class Game:
             p.update_exp()
             p.set_personal_shop(self.pool.get_shop_for_level(p.get_level()))
             print("Shop for player:     {}, level {}\n{}\n".format(p.name, p.get_level(), p.get_personal_shop()))
+
+        for p in self.players:
             p.event.set()
 
-        print("collecting ready players")
         all_ready = False
         while not all_ready:
             rdy = True
@@ -56,14 +58,16 @@ class Game:
                 rdy &= not p.event.isSet()
             all_ready = rdy
 
+        print("=================== Planning session number: {} end ====================".format(session_number))
         print("\n\n")
 
     def battle_session(self, session_number):
-        print("Battle session number:    {}".format(session_number))
+        print("+++++++++++++++++++ Battle session number: {} start ++++++++++++++++++++".format(session_number))
         battle_pairs = np.array(list(map(lambda p: p.name, self.players)))
         np.random.shuffle(battle_pairs)
         battle_pairs = battle_pairs.reshape((4, 2))
         print("Battle pairs:\n{}".format(battle_pairs))
+        print("++++++++++++++++++++ Battle session number: {} end +++++++++++++++++++++".format(session_number))
         print("\n\n")
 
     def generate_personal_shop(self, p):
