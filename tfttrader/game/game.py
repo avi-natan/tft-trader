@@ -1,21 +1,21 @@
 import numpy as np
 
-from tfttrader.game import pool, player
+from tfttrader.game import pool, board
 
 
-def init_players():
-    player_array = np.empty(8, dtype=player.Player)
+def init_boards():
+    board_array = np.empty(8, dtype=board.Board)
     for i in range(0, 8):
-        player_array[i] = player.Player("player_{}".format(i))
-    return player_array
+        board_array[i] = board.Board("board_{}".format(i))
+    return board_array
 
 
 class Game:
     def __init__(self):
         self.pool = pool.Pool()
-        self.players = init_players()
+        self.boards = init_boards()
 
     def start(self):
         print(self.pool.quantities)
-        for p in self.players:
-            print(p.to_string())
+        for b in self.boards:
+            print(b.to_string())
