@@ -1,12 +1,6 @@
 # passive object
 import random
 
-COST_LEVEL_1 = 1
-COST_LEVEL_2 = 2
-COST_LEVEL_3 = 3
-COST_LEVEL_4 = 4
-COST_LEVEL_5 = 5
-
 QUANTITY_LEVEL_1 = 39
 QUANTITY_LEVEL_2 = 26
 QUANTITY_LEVEL_3 = 21
@@ -27,65 +21,65 @@ class Pool:
         self.total_quantity_overall = TOTAL_QUANTITY_OVERALL
         self.quantities = [
             [TOTAL_QUANTITY_LEVEL_1,
-             [["Darius", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Elise", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Fiora", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Garen", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Graves", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Kassadin", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Kha'Zix", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Mordekaiser", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Nidalee", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Tristana", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Vayne", COST_LEVEL_1, QUANTITY_LEVEL_1],
-              ["Warwick", COST_LEVEL_1, QUANTITY_LEVEL_1]]],
+             [["Darius", QUANTITY_LEVEL_1],
+              ["Elise", QUANTITY_LEVEL_1],
+              ["Fiora", QUANTITY_LEVEL_1],
+              ["Garen", QUANTITY_LEVEL_1],
+              ["Graves", QUANTITY_LEVEL_1],
+              ["Kassadin", QUANTITY_LEVEL_1],
+              ["Kha'Zix", QUANTITY_LEVEL_1],
+              ["Mordekaiser", QUANTITY_LEVEL_1],
+              ["Nidalee", QUANTITY_LEVEL_1],
+              ["Tristana", QUANTITY_LEVEL_1],
+              ["Vayne", QUANTITY_LEVEL_1],
+              ["Warwick", QUANTITY_LEVEL_1]]],
 
             [TOTAL_QUANTITY_LEVEL_2,
-             [["Ahri", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Blitzcrank", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Braum", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Lissandra", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Lucian", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Lulu", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Pyke", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Rek'Sai", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Shen", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Twisted Fate", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Varus", COST_LEVEL_2, QUANTITY_LEVEL_2],
-              ["Zed", COST_LEVEL_2, QUANTITY_LEVEL_2]]],
+             [["Ahri", QUANTITY_LEVEL_2],
+              ["Blitzcrank", QUANTITY_LEVEL_2],
+              ["Braum", QUANTITY_LEVEL_2],
+              ["Lissandra", QUANTITY_LEVEL_2],
+              ["Lucian", QUANTITY_LEVEL_2],
+              ["Lulu", QUANTITY_LEVEL_2],
+              ["Pyke", QUANTITY_LEVEL_2],
+              ["Rek'Sai", QUANTITY_LEVEL_2],
+              ["Shen", QUANTITY_LEVEL_2],
+              ["Twisted Fate", QUANTITY_LEVEL_2],
+              ["Varus", QUANTITY_LEVEL_2],
+              ["Zed", QUANTITY_LEVEL_2]]],
 
             [TOTAL_QUANTITY_LEVEL_3,
-             [["Aatrox", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Ashe", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Evelynn", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Gangplank", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Katarina", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Kennen", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Morgana", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Poppy", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Rengar", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Shyvana", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Veigar", COST_LEVEL_3, QUANTITY_LEVEL_3],
-              ["Volibear", COST_LEVEL_3, QUANTITY_LEVEL_3]]],
+             [["Aatrox", QUANTITY_LEVEL_3],
+              ["Ashe", QUANTITY_LEVEL_3],
+              ["Evelynn", QUANTITY_LEVEL_3],
+              ["Gangplank", QUANTITY_LEVEL_3],
+              ["Katarina", QUANTITY_LEVEL_3],
+              ["Kennen", QUANTITY_LEVEL_3],
+              ["Morgana", QUANTITY_LEVEL_3],
+              ["Poppy", QUANTITY_LEVEL_3],
+              ["Rengar", QUANTITY_LEVEL_3],
+              ["Shyvana", QUANTITY_LEVEL_3],
+              ["Veigar", QUANTITY_LEVEL_3],
+              ["Volibear", QUANTITY_LEVEL_3]]],
 
             [TOTAL_QUANTITY_LEVEL_4,
-             [["Akali", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Aurelion Sol", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Brand", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Cho'Gath", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Draven", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Gnar", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Kindred", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Leona", COST_LEVEL_4, QUANTITY_LEVEL_4],
-              ["Sejuani", COST_LEVEL_4, QUANTITY_LEVEL_4]]],
+             [["Akali", QUANTITY_LEVEL_4],
+              ["Aurelion Sol", QUANTITY_LEVEL_4],
+              ["Brand", QUANTITY_LEVEL_4],
+              ["Cho'Gath", QUANTITY_LEVEL_4],
+              ["Draven", QUANTITY_LEVEL_4],
+              ["Gnar", QUANTITY_LEVEL_4],
+              ["Kindred", QUANTITY_LEVEL_4],
+              ["Leona", QUANTITY_LEVEL_4],
+              ["Sejuani", QUANTITY_LEVEL_4]]],
 
             [TOTAL_QUANTITY_LEVEL_5,
-             [["Anivia", COST_LEVEL_5, QUANTITY_LEVEL_5],
-              ["Karthus", COST_LEVEL_5, QUANTITY_LEVEL_5],
-              ["Kayle", COST_LEVEL_5, QUANTITY_LEVEL_5],
-              ["Miss Fortune", COST_LEVEL_5, QUANTITY_LEVEL_5],
-              ["Swain", COST_LEVEL_5, QUANTITY_LEVEL_5],
-              ["Yasuo", COST_LEVEL_5, QUANTITY_LEVEL_5]]],
+             [["Anivia", QUANTITY_LEVEL_5],
+              ["Karthus", QUANTITY_LEVEL_5],
+              ["Kayle", QUANTITY_LEVEL_5],
+              ["Miss Fortune", QUANTITY_LEVEL_5],
+              ["Swain", QUANTITY_LEVEL_5],
+              ["Yasuo", QUANTITY_LEVEL_5]]],
         ]
         self.probabilities = {
             2: [0, 1000],
@@ -168,21 +162,21 @@ class Pool:
                     break
             selected_champ = random.randrange(0, self.quantities[selected_bracket][0])
             for champ_record in self.quantities[selected_bracket][1]:
-                if selected_champ < champ_record[2]:
+                if selected_champ < champ_record[1]:
                     shop[i] = champ_record[0]
-                    champ_record[2] -= 1
+                    champ_record[1] -= 1
                     self.quantities[selected_bracket][0] -= 1
                     self.total_quantity_overall -= 1
                     break
                 else:
-                    selected_champ -= champ_record[2]
+                    selected_champ -= champ_record[1]
 
         return shop
 
-    def recall_old_personal_shop(self, personal_shop):
+    def recall_personal_shop(self, personal_shop):
         for i in personal_shop:
             if i is not None:
                 index = self.name_to_place[i]
-                self.quantities[index[0]][1][index[1]][2] += 1
+                self.quantities[index[0]][1][index[1]][1] += 1
                 self.quantities[index[0]][0] += 1
                 self.total_quantity_overall += 1
