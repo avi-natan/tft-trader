@@ -28,6 +28,12 @@ class Board:
                                [None, None, None, None, None, None, None],
                                [None, None, None, None, None, None, None]])
 
+    def get_board_name(self):
+        return self.board_name
+
+    def get_hp(self):
+        return self.hp
+
     def get_level(self):
         return self.level
 
@@ -36,6 +42,10 @@ class Board:
 
     def get_personal_shop(self):
         return self.personal_shop
+
+    def update_hp(self, amount):
+        self.hp += amount
+        self.hp = max(self.hp, 0)
 
     def update_exp(self, amount=2):
         #  below are cumulative experience for each level
